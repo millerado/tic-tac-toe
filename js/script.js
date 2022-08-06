@@ -7,18 +7,19 @@ const boardEl = document.createElement("div");
 mainEl.appendChild(boardEl);
 boardEl.setAttribute("id", "board");
 
-// create the 9 elements which will be the game tiles
+// create the 9 elements which will be the game tiles and pass to markBox function
 for (let i = 0; i < 9; i++) {
   const box = document.createElement("div");
   box.setAttribute("class", "game-space");
   boardEl.appendChild(box);
   box.setAttribute("id", `box-${i}`);
   box.addEventListener("click", function () {
-    markBox(box);
+    oneTurn(box);
   });
 }
 
 // Assign game tiles to variables
+// I don't think i need these
 const box0 = document.getElementById("box-0");
 const box1 = document.getElementById("box-1");
 const box2 = document.getElementById("box-2");
@@ -49,22 +50,22 @@ function switchPlayerTurn() {
   playerTurn *= -1;
 }
 
+// called when player clicks on game tile. Recieves box element that was clicked on from event listener
 function markBox(box) {
   if (playerTurn === 1 && !(box.classList[1] === "red-o")) {
     box.classList.add("blue-x");
     const index = parseInt(box.id.slice(-1), 10);
     boardArray[index] = 1;
-    switchPlayerTurn();
   }
   if (playerTurn === -1 && !(box.classList[1] === "blue-x")) {
     box.classList.add("red-o");
     const index = parseInt(box.id.slice(-1), 10);
     boardArray[index] = -1;
-    switchPlayerTurn();
   }
 }
 
 function checkWinState() {
+  // Can simplify by using absolute values and looking at player turn
   // Check Column Sum
   for (let i = 0; i < 3; i++) {
     if (boardArray[i] + boardArray[i + 3] + boardArray[i + 6] === 3) {
@@ -101,5 +102,17 @@ function checkWinState() {
   }
   if (boardArray[2] + boardArray[4] + boardArray[6] === -3) {
     winner = -1;
+  }
+}
+
+function oneTurn(box) {
+  markBox(box);
+  checkWinState();
+  if (Math.abs(winner) === 1) {
+    alert(`Player ${winner} wins!`);
+  } else if (winner === "T") {
+    alert("Tie Game!");
+  } else {
+    switchPlayerTurn();
   }
 }
