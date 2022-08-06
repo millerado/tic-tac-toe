@@ -27,10 +27,12 @@ const box7 = document.getElementById("box-7");
 const box8 = document.getElementById("box-8");
 
 // Define game state variables
-const boardArray = [
-  [0, 0, 0],
-  [0, 0, 0],
-  [0, 0, 0],
-];
+const boardArray = [null, null, null, null, null, null, null, null, null];
 let playerTurn = 1; // 1 = player1, -1 = player2
 let winner = "playing"; //playing, tied, player that won
+
+function resetGame() {
+  boardArray = [null, null, null, null, null, null, null, null, null];
+  playerTurn = 1;
+  winner = "playing";
+}
