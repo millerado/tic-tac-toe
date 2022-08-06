@@ -30,7 +30,7 @@ const box7 = document.getElementById("box-7");
 const box8 = document.getElementById("box-8");
 
 // Define game state variables
-const boardArray = [null, null, null, null, null, null, null, null, null];
+let boardArray = [null, null, null, null, null, null, null, null, null];
 let playerTurn = 1; // 1 = player1, -1 = player2
 let winner = null; // 1 = player1, -1 = player2, 'T' for tied
 
@@ -38,6 +38,11 @@ function resetGame() {
   boardArray = [null, null, null, null, null, null, null, null, null];
   playerTurn = 1;
   winner = null;
+  // loop through each cell and remove classes to reset the board
+  for (let i = 0; i < boardEl.childElementCount; i++) {
+    const box = boardEl.children[i];
+    box.classList.remove("blue-x", "red-o");
+  }
 }
 
 function switchPlayerTurn() {
