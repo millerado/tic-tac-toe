@@ -46,11 +46,7 @@ function resetGame() {
 }
 
 function switchPlayerTurn() {
-  if (playerTurn === 1) {
-    playerTurn = -1;
-  } else {
-    playerTurn = 1;
-  }
+  playerTurn *= -1;
 }
 
 function markBox(box) {
