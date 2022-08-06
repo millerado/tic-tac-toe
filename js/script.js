@@ -13,6 +13,9 @@ for (let i = 0; i < 9; i++) {
   box.setAttribute("class", "game-space");
   boardEl.appendChild(box);
   box.setAttribute("id", `box-${i}`);
+  box.addEventListener("click", function () {
+    testFunction();
+  });
 }
 
 // Assign game tiles to variables
@@ -43,4 +46,8 @@ function switchPlayerTurn() {
   } else {
     playerTurn - 1;
   }
+}
+
+function testFunction() {
+  console.log("event listener worked!");
 }
