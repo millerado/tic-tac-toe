@@ -1,6 +1,6 @@
 // Creating the elements using the DOM
 
-const mainEl = document.querySelector("main");
+const mainEl = document.querySelector("section");
 
 // create the board element
 const boardEl = document.createElement("div");
@@ -17,6 +17,10 @@ for (let i = 0; i < 9; i++) {
     oneTurn(box);
   });
 }
+
+document.getElementById("btn-reset").addEventListener("click", function () {
+  resetGame();
+});
 
 // Assign game tiles to variables
 // I don't think i need these
