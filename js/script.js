@@ -68,40 +68,26 @@ function checkWinState() {
   // Can simplify by using absolute values and looking at player turn
   // Check Column Sum
   for (let i = 0; i < 3; i++) {
-    if (boardArray[i] + boardArray[i + 3] + boardArray[i + 6] === 3) {
-      winner = 1;
-      break;
-    }
-    if (boardArray[i] + boardArray[i + 3] + boardArray[i + 6] === -3) {
-      winner = -1;
+    if (Math.abs(boardArray[i] + boardArray[i + 3] + boardArray[i + 6]) === 3) {
+      playerTurn === 1 ? (winner = 1) : (winner = -1);
       break;
     }
   }
   // Check Row Sum
   let j = 0;
   while (j < 7) {
-    if (boardArray[j] + boardArray[j + 1] + boardArray[j + 2] === 3) {
-      winner = 1;
-      break;
-    }
-    if (boardArray[j] + boardArray[j + 1] + boardArray[j + 2] === -3) {
-      winner = -1;
+    if (Math.abs(boardArray[j] + boardArray[j + 1] + boardArray[j + 2]) === 3) {
+      playerTurn === 1 ? (winner = 1) : (winner = -1);
       break;
     }
     j += 3;
   }
   // Check Diagonal Sum
-  if (boardArray[0] + boardArray[4] + boardArray[8] === 3) {
-    winner = 1;
+  if (Math.abs(boardArray[0] + boardArray[4] + boardArray[8]) === 3) {
+    playerTurn === 1 ? (winner = 1) : (winner = -1);
   }
-  if (boardArray[0] + boardArray[4] + boardArray[8] === -3) {
-    winner = -1;
-  }
-  if (boardArray[2] + boardArray[4] + boardArray[6] === 3) {
-    winner = 1;
-  }
-  if (boardArray[2] + boardArray[4] + boardArray[6] === -3) {
-    winner = -1;
+  if (Math.abs(boardArray[2] + boardArray[4] + boardArray[6]) === 3) {
+    playerTurn === 1 ? (winner = 1) : (winner = -1);
   }
 }
 
