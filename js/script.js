@@ -14,7 +14,7 @@ for (let i = 0; i < 9; i++) {
   boardEl.appendChild(box);
   box.setAttribute("id", `box-${i}`);
   box.addEventListener("click", function () {
-    testFunction();
+    markBox(box);
   });
 }
 
@@ -44,10 +44,14 @@ function switchPlayerTurn() {
   if (playerTurn === 1) {
     playerTurn = -1;
   } else {
-    playerTurn - 1;
+    playerTurn = 1;
   }
 }
 
-function testFunction() {
-  console.log("event listener worked!");
+function markBox(box) {
+  if (playerTurn === 1) {
+    box.classList.add("blue-x");
+  } else {
+    box.classList.add("red-o");
+  }
 }
