@@ -37,6 +37,7 @@ h2 {
   align-items: center;
   justify-content: center;
   font-size: 44px;
+  margin-top: 20px;
 }
 
 #board {
@@ -52,7 +53,7 @@ h2 {
 }
 
 .game-space {
-  background-color: white;
+  background-color: rgb(240, 230, 230);
 }
 
 .blue-x {

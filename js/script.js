@@ -1,5 +1,7 @@
 // Creating the elements using the DOM
 
+// Probably need to put board initialization into a function
+
 const mainEl = document.querySelector("section");
 
 // create the board element
@@ -17,7 +19,7 @@ for (let i = 0; i < 9; i++) {
     oneTurn(box);
   });
 }
-
+// Create variable for the turn display
 const turnEl = document.getElementById("turn-display");
 
 document.getElementById("btn-reset").addEventListener("click", function () {
@@ -40,6 +42,7 @@ let boardArray = [null, null, null, null, null, null, null, null, null];
 let playerTurn = 1; // 1 = player1, -1 = player2
 let winner = null; // 1 = player1, -1 = player2, 'T' for tied
 
+// needs to reinitilize the board as well. Add once we make initilization function
 function resetGame() {
   boardArray = [null, null, null, null, null, null, null, null, null];
   playerTurn = 1;
@@ -118,3 +121,6 @@ function oneTurn(box) {
     switchPlayerTurn();
   }
 }
+
+// Need some functionality which stops from filling
+// game tiles when there is a winner
