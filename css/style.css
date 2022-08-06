@@ -17,6 +17,11 @@ body {
   height: 100vh;
   color: #333;
   background-image: linear-gradient(to top left, #753682 0%, #bf2e34 100%);
+  align-items: center;
+  justify-content: center;
+}
+
+header {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -25,4 +30,11 @@ body {
 h1 {
   font-weight: bold;
   font-size: 56px;
+}
+
+#board {
+  height: 500px;
+  width: 500px;
+  background-color: black;
+  margin: 0 auto;
 }
