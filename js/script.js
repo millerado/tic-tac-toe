@@ -52,6 +52,7 @@ function resetGame() {
   for (let i = 0; i < boardEl.childElementCount; i++) {
     const box = boardEl.children[i];
     box.classList.remove("blue-x", "red-o");
+    box.textContent = "";
   }
 }
 
@@ -67,11 +68,13 @@ function switchPlayerTurn() {
 // called when player clicks on game tile. Recieves box element that was clicked on from event listener
 function markBox(box) {
   if (playerTurn === 1 && !(box.classList[1] === "red-o")) {
+    box.textContent = "X";
     box.classList.add("blue-x");
     const index = parseInt(box.id.slice(-1), 10);
     boardArray[index] = 1;
   }
   if (playerTurn === -1 && !(box.classList[1] === "blue-x")) {
+    box.textContent = "O";
     box.classList.add("red-o");
     const index = parseInt(box.id.slice(-1), 10);
     boardArray[index] = -1;
