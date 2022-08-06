@@ -59,3 +59,37 @@ function markBox(box) {
     boardArray[index] = -1;
   }
 }
+
+function checkWinState() {
+  // Check Column Sum
+  for (let i = 0; i < 3; i++) {
+    if (boardArray[i] + boardArray[i + 3] + boardArray[i + 6] === 3) {
+      // player1 wins
+    }
+    if (boardArray[i] + boardArray[i + 3] + boardArray[i + 6] === -3) {
+      // player2 wins
+    }
+  }
+  // Check Row Sum
+  for (let i = 0; i < 7; i + 3) {
+    if (boardArray[i] + boardArray[i + 1] + boardArray[i + 2] === 3) {
+      // player1 wins
+    }
+    if (boardArray[i] + boardArray[i + 1] + boardArray[i + 2] === -3) {
+      // player2 wins
+    }
+  }
+  // Check Diagonal Sum
+  if (boardArray[0] + boardArray[4] + boardArray[8] === 3) {
+    // player1 wins
+  }
+  if (boardArray[0] + boardArray[4] + boardArray[8] === -3) {
+    // player2 wins
+  }
+  if (boardArray[2] + boardArray[4] + boardArray[6] === 3) {
+    // player1 wins
+  }
+  if (boardArray[2] + boardArray[4] + boardArray[6] === -3) {
+    // player2 wins
+  }
+}
