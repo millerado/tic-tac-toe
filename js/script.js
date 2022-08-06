@@ -65,7 +65,6 @@ function markBox(box) {
 }
 
 function checkWinState() {
-  // Can simplify by using absolute values and looking at player turn
   // Check Column Sum
   for (let i = 0; i < 3; i++) {
     if (Math.abs(boardArray[i] + boardArray[i + 3] + boardArray[i + 6]) === 3) {
@@ -89,13 +88,19 @@ function checkWinState() {
   if (Math.abs(boardArray[2] + boardArray[4] + boardArray[6]) === 3) {
     playerTurn === 1 ? (winner = 1) : (winner = -1);
   }
+  // Check for Tie Game
+  if (!boardArray.includes(null)) {
+    winner = "T";
+  }
 }
 
 function oneTurn(box) {
   markBox(box);
   checkWinState();
-  if (Math.abs(winner) === 1) {
-    alert(`Player ${winner} wins!`);
+  if (winner === 1) {
+    alert(`Player 1 wins!`);
+  } else if (winner === -1) {
+    alert(`Player 2 wins!`);
   } else if (winner === "T") {
     alert("Tie Game!");
   } else {
