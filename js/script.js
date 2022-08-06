@@ -12,4 +12,5 @@ for (let i = 0; i < 9; i++) {
   const box = document.createElement("div");
   box.setAttribute("class", "game-space");
   boardEl.appendChild(box);
+  box.setAttribute("id", `box-${i}`);
 }
