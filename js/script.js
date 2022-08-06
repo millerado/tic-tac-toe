@@ -54,11 +54,12 @@ function switchPlayerTurn() {
 }
 
 function markBox(box) {
-  if (playerTurn === 1) {
+  if (playerTurn === 1 && !(box.classList[1] === "red-o")) {
     box.classList.add("blue-x");
     const index = parseInt(box.id.slice(-1), 10);
     boardArray[index] = 1;
-  } else {
+  }
+  if (playerTurn === -1 && !(box.classList[1] === "blue-x")) {
     box.classList.add("red-o");
     const index = parseInt(box.id.slice(-1), 10);
     boardArray[index] = -1;
