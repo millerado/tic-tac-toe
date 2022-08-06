@@ -58,11 +58,13 @@ function markBox(box) {
     box.classList.add("blue-x");
     const index = parseInt(box.id.slice(-1), 10);
     boardArray[index] = 1;
+    switchPlayerTurn();
   }
   if (playerTurn === -1 && !(box.classList[1] === "blue-x")) {
     box.classList.add("red-o");
     const index = parseInt(box.id.slice(-1), 10);
     boardArray[index] = -1;
+    switchPlayerTurn();
   }
 }
 
