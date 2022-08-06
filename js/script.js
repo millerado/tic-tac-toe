@@ -36,3 +36,11 @@ function resetGame() {
   playerTurn = 1;
   winner = null;
 }
+
+function switchPlayerTurn() {
+  if (playerTurn === 1) {
+    playerTurn = -1;
+  } else {
+    playerTurn - 1;
+  }
+}
