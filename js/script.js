@@ -18,10 +18,11 @@ for (let i = 0; i < 9; i++) {
   });
 }
 
+const turnEl = document.getElementById("turn-display");
+
 document.getElementById("btn-reset").addEventListener("click", function () {
   resetGame();
 });
-
 // Assign game tiles to variables
 // I don't think i need these
 const box0 = document.getElementById("box-0");
@@ -42,6 +43,7 @@ let winner = null; // 1 = player1, -1 = player2, 'T' for tied
 function resetGame() {
   boardArray = [null, null, null, null, null, null, null, null, null];
   playerTurn = 1;
+  turnEl.textContent = "Turn: Player 1";
   winner = null;
   // loop through each cell and remove classes to reset the board
   for (let i = 0; i < boardEl.childElementCount; i++) {
@@ -52,6 +54,11 @@ function resetGame() {
 
 function switchPlayerTurn() {
   playerTurn *= -1;
+  if (playerTurn === 1) {
+    turnEl.textContent = "Turn: Player 1";
+  } else {
+    turnEl.textContent = "Turn: Player 2";
+  }
 }
 
 // called when player clicks on game tile. Recieves box element that was clicked on from event listener
@@ -102,11 +109,11 @@ function oneTurn(box) {
   markBox(box);
   checkWinState();
   if (winner === 1) {
-    alert(`Player 1 wins!`);
+    turnEl.textContent = "Player 1 wins!";
   } else if (winner === -1) {
-    alert(`Player 2 wins!`);
+    turnEl.textContent = "Player 2 wins!";
   } else if (winner === "T") {
-    alert("Tie Game!");
+    turnEl.textContent = "Tie Game!";
   } else {
     switchPlayerTurn();
   }
