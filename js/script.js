@@ -1,46 +1,35 @@
-// Creating the elements using the DOM
-
-// Probably need to put board initialization into a function
-
 const mainEl = document.querySelector("section");
-
-// create the board element
 const boardEl = document.createElement("div");
-mainEl.appendChild(boardEl);
-boardEl.setAttribute("id", "board");
-
-// create the 9 elements which will be the game tiles and pass to markBox function
-for (let i = 0; i < 9; i++) {
-  const box = document.createElement("div");
-  box.setAttribute("class", "game-space");
-  boardEl.appendChild(box);
-  box.setAttribute("id", `box-${i}`);
-  box.addEventListener("click", function () {
-    oneTurn(box);
-  });
-}
-// Create variable for the turn display
 const turnEl = document.getElementById("turn-display");
 
+// Connect reset button to reset function
 document.getElementById("btn-reset").addEventListener("click", function () {
   resetGame();
 });
-// Assign game tiles to variables
-// I don't think i need these
-const box0 = document.getElementById("box-0");
-const box1 = document.getElementById("box-1");
-const box2 = document.getElementById("box-2");
-const box3 = document.getElementById("box-3");
-const box4 = document.getElementById("box-4");
-const box5 = document.getElementById("box-5");
-const box6 = document.getElementById("box-6");
-const box7 = document.getElementById("box-7");
-const box8 = document.getElementById("box-8");
 
 // Define game state variables
 let boardArray = [null, null, null, null, null, null, null, null, null];
 let playerTurn = 1; // 1 = player1, -1 = player2
 let winner = null; // 1 = player1, -1 = player2, 'T' for tied
+
+function initalizeBoard() {
+  // Add board to main element
+  mainEl.appendChild(boardEl);
+  // Set board board ID
+  boardEl.setAttribute("id", "board");
+  // create the 9 elements which will be the game tiles
+  for (let i = 0; i < 9; i++) {
+    const box = document.createElement("div");
+    box.setAttribute("class", "game-space");
+    boardEl.appendChild(box);
+    box.setAttribute("id", `box-${i}`);
+    box.addEventListener("click", function () {
+      oneTurn(box);
+    });
+  }
+}
+
+initalizeBoard();
 
 // needs to reinitilize the board as well. Add once we make initilization function
 function resetGame() {
