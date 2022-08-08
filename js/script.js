@@ -39,7 +39,7 @@ function resetGame() {
   // Probably wont need this once we put inializeBorad into here
   for (let i = 0; i < boardEl.childElementCount; i++) {
     const box = boardEl.children[i];
-    box.classList.remove("blue-x", "red-o");
+    box.classList.remove("blue-x", "red-o", "stop-fill");
     box.textContent = "";
   }
 }
@@ -117,6 +117,7 @@ function stopMarkBox() {
   }
 }
 
+// Called when a game tile is clicked
 function oneTurn(box) {
   markBox(box);
   checkWinState();
