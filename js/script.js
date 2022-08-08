@@ -3,9 +3,7 @@ const boardEl = document.createElement("div");
 const turnEl = document.getElementById("turn-display");
 
 // Connect reset button to reset function
-document.getElementById("btn-reset").addEventListener("click", function () {
-  resetGame();
-});
+document.getElementById("btn-reset").addEventListener("click", resetGame);
 
 // Define game state variables
 let boardArray = [null, null, null, null, null, null, null, null, null];
@@ -38,6 +36,7 @@ function resetGame() {
   turnEl.textContent = "Turn: Player 1";
   winner = null;
   // loop through each cell and remove classes to reset the board
+  // Probably wont need this once we put inializeBorad into here
   for (let i = 0; i < boardEl.childElementCount; i++) {
     const box = boardEl.children[i];
     box.classList.remove("blue-x", "red-o");
@@ -56,13 +55,21 @@ function switchPlayerTurn() {
 
 // called when player clicks on game tile. Recieves box element that was clicked on from event listener
 function markBox(box) {
-  if (playerTurn === 1 && !(box.classList[1] === "red-o")) {
+  if (
+    playerTurn === 1 &&
+    !(box.classList[1] === "red-o") &&
+    !(box.classList[1] === "stop-fill")
+  ) {
     box.textContent = "X";
     box.classList.add("blue-x");
     const index = parseInt(box.id.slice(-1), 10);
     boardArray[index] = 1;
   }
-  if (playerTurn === -1 && !(box.classList[1] === "blue-x")) {
+  if (
+    playerTurn === -1 &&
+    !(box.classList[1] === "blue-x") &&
+    !(box.classList[1] === "stop-fill")
+  ) {
     box.textContent = "O";
     box.classList.add("red-o");
     const index = parseInt(box.id.slice(-1), 10);
@@ -100,19 +107,28 @@ function checkWinState() {
   }
 }
 
+// add stop-fill class to empty game tiles once the game is won so those tiles can't be filled after game is won
+function stopMarkBox() {
+  for (let i = 0; i < boardEl.childElementCount; i++) {
+    const box = boardEl.children[i];
+    if (box.classList.length < 2) {
+      box.classList.add("stop-fill");
+    }
+  }
+}
+
 function oneTurn(box) {
   markBox(box);
   checkWinState();
   if (winner === 1) {
     turnEl.textContent = "Player 1 wins!";
+    stopMarkBox();
   } else if (winner === -1) {
     turnEl.textContent = "Player 2 wins!";
+    stopMarkBox();
   } else if (winner === "T") {
     turnEl.textContent = "Tie Game!";
   } else {
     switchPlayerTurn();
   }
 }
-
-// Need some functionality which stops from filling
-// game tiles when there is a winner
